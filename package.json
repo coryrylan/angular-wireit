@@ -1,0 +1,90 @@
+{
+  "name": "angular-wireit",
+  "version": "0.0.0",
+  "scripts": {
+    "ci": "wireit",
+    "clean": "git clean -dfX",
+    "ng": "ng",
+    "start": "wireit",
+    "build": "wireit",
+    "build:watch": "wireit",
+    "test": "wireit",
+    "test:watch": "wireit"
+  },
+  "wireit": {
+    "ci": {
+      "dependencies": [
+        "build",
+        "test"
+      ]
+    },
+    "start": {
+      "command": "ng serve",
+      "dependencies": [
+        "build"
+      ],
+      "service": true
+    },
+    "build": {
+      "command": "ng build",
+      "files": [
+        "src/**/*",
+        "!src/**/*.spec.ts",
+        "angular.json",
+        "package.json",
+        "tsconfig.json",
+        "tsconfig.app.json"
+      ],
+      "output": [
+        "dist/angular-wireit/**/*"
+      ]
+    },
+    "build:watch": {
+      "command": "ng build --watch --configuration development",
+      "service": true
+    },
+    "test": {
+      "command": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
+      "files": [
+        "src/**/*",
+        "angular.json",
+        "package.json",
+        "tsconfig.json",
+        "tsconfig.app.json",
+        "tsconfig.spec.json"
+      ],
+      "output": [
+        "dist/test-out/**/*"
+      ]
+    },
+    "test:watch": {
+      "command": "ng test",
+      "service": true
+    }
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/router": "^20.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.0.2",
+    "@angular/cli": "^20.0.2",
+    "@angular/compiler-cli": "^20.0.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.7.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.2",
+    "wireit": "0.14.12"
+  }
+}
